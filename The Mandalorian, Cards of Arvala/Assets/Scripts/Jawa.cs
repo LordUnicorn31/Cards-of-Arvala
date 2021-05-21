@@ -28,6 +28,9 @@ public class Jawa : MonoBehaviour
             if (health <= 0)
             {
                 Debug.Log("Jawa Died!");
+                //IM TRASH
+
+                health = 0;
             }
         }
     }
