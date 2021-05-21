@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jawa : MonoBehaviour
+public class Grogu : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 80;
     [HideInInspector] public int health;
-    public int damage = 20;
-    public Grogu grogu;
+    public int damage = 30;
+    public Jawa jawa;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +24,11 @@ public class Jawa : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            health -= grogu.damage;
+            health -= jawa.damage;
 
             if (health <= 0)
             {
-                Debug.Log("Jawa Died!");
+                Debug.Log("Grogu Died!");
                 //IM TRASH
 
                 health = 0;
