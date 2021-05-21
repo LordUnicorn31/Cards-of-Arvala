@@ -5,22 +5,20 @@ using UnityEngine;
 public class Text : MonoBehaviour
 {
     public GameObject obj;
-    private TextMesh text;
-    public Jawa jawa;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<TextMesh>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateUI();
+        
     }
 
-    void UpdateUI()
+    void Movement()
     {
-        text.text = "Life: " + jawa.health.ToString() ;
+        this.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
     }
 }
