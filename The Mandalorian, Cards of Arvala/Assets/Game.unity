@@ -509,8 +509,9 @@ GameObject:
   - component: {fileID: 726682035}
   - component: {fileID: 726682034}
   - component: {fileID: 726682033}
+  - component: {fileID: 726682036}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: GroguUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,6 +607,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &726682036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726682031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10eb35065f29b74ab6cce8b73a0df66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 1532553849}
+  grogu: {fileID: 1532553851}
 --- !u!1 &796366411
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +931,7 @@ GameObject:
   - component: {fileID: 969839368}
   - component: {fileID: 969839372}
   m_Layer: 0
-  m_Name: 3dtext
+  m_Name: JawaUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,7 +1394,7 @@ MonoBehaviour:
   maxHealth: 80
   health: 0
   damage: 30
-  jawa: {fileID: 0}
+  jawa: {fileID: 1357791805}
 --- !u!43 &1759732754
 Mesh:
   m_ObjectHideFlags: 0
