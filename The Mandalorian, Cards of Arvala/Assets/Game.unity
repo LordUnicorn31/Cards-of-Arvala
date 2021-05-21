@@ -789,6 +789,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 969839371}
   - {fileID: 1476547999}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -897,11 +898,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969839367}
-  m_LocalRotation: {x: 0.014642467, y: 0.70695513, z: 0.70695525, w: 0.014642481}
-  m_LocalPosition: {x: 0.51134586, y: -0.07395176, z: 1.9680201}
-  m_LocalScale: {x: 0.20709841, y: 0.20709851, z: 0.2070985}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.117000066, y: 0.44300017, z: -0.015000112}
+  m_LocalScale: {x: 0.047143918, y: 0.047143918, z: 0.04714392}
   m_Children: []
-  m_Father: {fileID: 1476547999}
+  m_Father: {fileID: 835018185}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &969839372
@@ -984,6 +985,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grogu
       objectReference: {fileID: 0}
+    - target: {fileID: 3039697626070572587, guid: a6ae4daa5b12ef2459261bc99123330f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b50175d14131f4458ea80d68871077d, type: 2}
+    - target: {fileID: 8094174597173768617, guid: a6ae4daa5b12ef2459261bc99123330f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e05b9933d331fa94683df853b63a8c6b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6ae4daa5b12ef2459261bc99123330f, type: 3}
 --- !u!1 &1317279651
@@ -1137,7 +1146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9350601cd73f3d643817e085be0c78fc, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9350601cd73f3d643817e085be0c78fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1163,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.22764
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9350601cd73f3d643817e085be0c78fc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e7d8495c11170d4c8118b16a0ef17c3, type: 2}
     - target: {fileID: 919132149155446097, guid: 9350601cd73f3d643817e085be0c78fc, type: 3}
       propertyPath: m_Name
       value: Jawa_model
