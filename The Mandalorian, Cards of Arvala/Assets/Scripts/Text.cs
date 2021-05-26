@@ -21,6 +21,6 @@ public class Text : MonoBehaviour
 
     void UpdateUI()
     {
-        text.text = $"Life: {jawa.health.ToString()}";
+        //text.text = $"Life: {jawa.health.ToString()}";
     }
 }
