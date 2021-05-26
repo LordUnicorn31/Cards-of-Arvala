@@ -1,118 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vuforia;
 
 public class GameLoop : MonoBehaviour
 {
-    private const int deckSize = 1;
-    private Card[] player1Cards;
-    private Card[] player2Cards;
-    private int currentPlayer;
-    private Turn turn;
-    private Card lastRegisteredCard;
-    private bool registeredCard = false;
-    private int player1NumCards = 0;
-    private int player2NumCards = 0;
+    public Player player1;
+    public Player player2;
+    private Player turnPlayer;
+    private Turn turnState;
 
     private enum Turn
     {
         DRAW,
+        PLAY_CARD,
         ATTACK,
         ENDTURN,
     }
     void Start()
     {
-        Debug.Log("game loop is working");
-        player1Cards = new Card[deckSize];
-        player2Cards = new Card[deckSize];
+        if (Random.Range(1, 2) == 1)
+            turnPlayer = player1;
+        else
+            turnPlayer = player2;
 
-        currentPlayer = Random.Range(1, 2);
-        turn = Turn.DRAW;
+        turnState = Turn.DRAW;
+
+        VuforiaUnity.SetHint(VuforiaUnity.VuforiaHint.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, Player.sizeFieldCards *2);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         TurnLogic();
     }
 
-    public void TakeCard(Card card)
+    public bool DetectedNewCard(Card card)
     {
-        if(card.id != -1)
+        if (turnState != Turn.DRAW)
+            return false;
+
+        if (turnPlayer.AddCard(card))
         {
-            card.enabled = false;
+            turnState = Turn.PLAY_CARD;
+            card.registered = true;
+            Debug.Log("Succesful draw card");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("invalid card to draw");
+            return false;
+        }
+    }
+
+    public void DetectedRegisteredCard(Card card)
+    {
+        if (turnState != Turn.PLAY_CARD)
             return;
-        }
 
-        if(registeredCard)
+        if (turnPlayer.PlayCard(card))
         {
-            return;
+            Debug.Log("Succesful played card");
+            turnState = Turn.ATTACK;
         }
-
-        if (currentPlayer == 1)
-        {
-            for (int i = 0; i < deckSize; ++i)
-            {
-                if(player1Cards[i].id == card.id)
-                {
-                    lastRegisteredCard = card;
-                    registeredCard = true;
-                    break;
-                }
-            }
-        }
-
-        else if (currentPlayer == 2)
-        {
-            for (int i = 0; i < deckSize; ++i)
-            {
-                if (player2Cards[i].id == card.id)
-                {
-                    lastRegisteredCard = card;
-                    registeredCard = true;
-                    break;
-                }
-            }
-        }
+        else
+            Debug.LogWarning("Cant play this card: Card not in hand");
     }
 
     void EndTurn()
     {
-        if (currentPlayer == 1)
-            currentPlayer = 2;
-        else if (currentPlayer == 2)
-            currentPlayer = 1;
+        if (turnPlayer == player1)
+            turnPlayer = player2;
+        else if (turnPlayer == player2)
+            turnPlayer = player1;
     }
 
     void TurnLogic()
     {
-        switch(turn)
+        switch(turnState)
         {
             case Turn.DRAW:
-                if(registeredCard)
-                {
-                    if (currentPlayer == 1)
-                    {
-                        Debug.Log("player1 drawing card");
-                        player1Cards[player1NumCards] = lastRegisteredCard;
-                        ++player1NumCards;
-                    }
+                break;
 
-                    else if (currentPlayer == 2)
-                    {
-                        Debug.Log("player2 drawing card");
-                        player2Cards[player2NumCards] = lastRegisteredCard;
-                        ++player2NumCards;
-                    }
-
-                    registeredCard = false;
-                    turn = Turn.ATTACK;
-                }
+            case Turn.PLAY_CARD:
                 break;
 
             case Turn.ATTACK:
-                turn = Turn.ENDTURN;
+                turnState = Turn.ENDTURN;
                 break;
 
             case Turn.ENDTURN:

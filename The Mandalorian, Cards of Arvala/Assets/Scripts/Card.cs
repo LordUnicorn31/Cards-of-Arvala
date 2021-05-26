@@ -7,18 +7,15 @@ public class Card : MonoBehaviour
     public int maxHealth;
     private int health;
     public int damage;
-    [HideInInspector]public int id = -1;
     [HideInInspector]public int player = 0;
     public GameLoop game;
-    // Start is called before the first frame update
-    void Start()
-    {
-        game.TakeCard(this);
-    }
+    public bool registered = false;
 
-    // Update is called once per frame
-    void Update()
+    public void DetectedCard()
     {
-        
+        if (!registered)
+            gameObject.SetActive(game.DetectedNewCard(this));
+        else
+            game.DetectedRegisteredCard(this);
     }
 }
