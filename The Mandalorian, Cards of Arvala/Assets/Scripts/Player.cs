@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [HideInInspector] public Card[] cards;
-    [HideInInspector] public int numCards = 0;
+    [HideInInspector] public int numRegisteredCards = 0;
     private const int deckSize = 1;
     [HideInInspector] public Card[] fieldCards;
     [HideInInspector] public int fieldnumCards = 0;
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TODO: ?? (array C#)
         fieldCards = new Card[sizeFieldCards];
         cards = new Card[deckSize];
         handCards = new Card[deckSize];
@@ -28,13 +29,16 @@ public class Player : MonoBehaviour
 
     public bool AddCard(Card card)
     {
-        for (int i = 0; i < numCards; ++i)
+        if (handnumCards >= deckSize && numRegisteredCards >= deckSize)
+            return true;
+
+        for (int i = 0; i < numRegisteredCards; ++i)
         {
             if (cards[i] == card)
                 return false;
         }
-        cards[++numCards] = card;
-        handCards[++handnumCards] = card;
+        cards[(++numRegisteredCards) - 1] = card;
+        handCards[(++handnumCards) - 1] = card;
         return true;
     }
 
@@ -43,14 +47,14 @@ public class Player : MonoBehaviour
         if(fieldnumCards >= sizeFieldCards)
             return true;
 
-        for (int i = 0; i < numCards; ++i)
+        for (int i = 0; i < handnumCards; ++i)
         {
             if (handCards[i] == card)
             {
-                 handCards[i] = handCards[handnumCards];
+                 handCards[i] = handCards[handnumCards-1];
                 --handnumCards;
 
-                fieldCards[++fieldnumCards] = card;
+                fieldCards[(++fieldnumCards)-1] = card;
                 return true;
             }
         }

@@ -9,12 +9,12 @@ public class Card : MonoBehaviour
     public int damage;
     [HideInInspector]public int player = 0;
     public GameLoop game;
-    public bool registered = false;
+    [HideInInspector]public bool registered = false;
 
     public void DetectedCard()
     {
         if (!registered)
-            gameObject.SetActive(game.DetectedNewCard(this));
+            game.DetectedNewCard(this);
         else
             game.DetectedRegisteredCard(this);
     }

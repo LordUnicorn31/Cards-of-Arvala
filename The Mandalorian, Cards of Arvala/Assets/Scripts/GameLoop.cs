@@ -92,6 +92,7 @@ public class GameLoop : MonoBehaviour
 
             case Turn.ENDTURN:
                 EndTurn();
+                turnState = Turn.DRAW;
                 Debug.Log("turn has ended");
                 break;
 
