@@ -1,0 +1,21 @@
+1- ui game loop
+	- Each state show message current state
+	- Attack stage logic buttons
+
+2- Player check win lose conditon
+
+3- Animations
+	play card animation
+	Attack animation
+	die animation
+
+4- fix loop
+	on draw stage dont show the mesh of the card
+	draw / play states button to change state (just active when found card to draw or play)
+
+5- billboard epic fail
+
+//-------------------------------PROTOTYPE-------------------------------------------------
+6- Add some more cards (redo grogu fisical card)
+
+7- logic for repeated cards

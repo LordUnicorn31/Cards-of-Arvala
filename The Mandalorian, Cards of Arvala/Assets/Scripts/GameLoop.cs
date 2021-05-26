@@ -70,6 +70,8 @@ public class GameLoop : MonoBehaviour
 
     void EndTurn()
     {
+        //check win lose players
+        //player.CheckLose();
         if (turnPlayer == player1)
             turnPlayer = player2;
         else if (turnPlayer == player2)
