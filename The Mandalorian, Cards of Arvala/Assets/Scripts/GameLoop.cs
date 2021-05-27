@@ -9,6 +9,7 @@ public class GameLoop : MonoBehaviour
     public Player player2;
     private Player turnPlayer;
     private Turn turnState;
+    public UI ui;
 
     private enum Turn
     {
@@ -83,12 +84,15 @@ public class GameLoop : MonoBehaviour
         switch(turnState)
         {
             case Turn.DRAW:
+                ui.UiDraw();
                 break;
 
             case Turn.PLAY_CARD:
+                ui.UiPlay();
                 break;
 
             case Turn.ATTACK:
+                ui.UiAttack();
                 turnState = Turn.ENDTURN;
                 break;
 
