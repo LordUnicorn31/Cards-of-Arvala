@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public Canvas drawCanvas;
-    public Canvas playCardCanvas;
-    public Canvas attackCanvas;
-    [HideInInspector] public Canvas activeCanvas;
+    public GameObject drawCanvas;
+    public GameObject playCardCanvas;
+    public GameObject attackCanvas;
+    private GameObject activeCanvas;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        drawCanvas.enabled = false;
-        playCardCanvas.enabled = false;
-        attackCanvas.enabled = false;
-
+        drawCanvas.SetActive(false);
+        playCardCanvas.SetActive(false);
+        attackCanvas.SetActive(false);
+        drawCanvas.GetComponent<Canvas>().enabled = true;
+        playCardCanvas.GetComponent<Canvas>().enabled = true;
+        attackCanvas.GetComponent<Canvas>().enabled = true;
         //first canvas is draw one
         activeCanvas = drawCanvas;
     }
@@ -29,23 +31,28 @@ public class UIManager : MonoBehaviour
 
     public void UiDraw()
     {
-        activeCanvas.enabled = false;
+        activeCanvas.SetActive(false);
         activeCanvas = drawCanvas;
-        activeCanvas.enabled = true;
+        activeCanvas.SetActive(true);
     }
 
     public void UiPlay()
     {
-        activeCanvas.enabled = false;
+        activeCanvas.SetActive(false);
         activeCanvas = playCardCanvas;
-        activeCanvas.enabled = true;
+        activeCanvas.SetActive(true);
     }
 
     public void UiAttack()
     {
-        activeCanvas.enabled = false;
+        activeCanvas.SetActive(false);
         activeCanvas = attackCanvas;
-        activeCanvas.enabled = true;
+        activeCanvas.SetActive(true);
+    }
+
+    public void DisableAllUi()
+    {
+        activeCanvas.SetActive(false);
     }
 
     //void UiDraw2()

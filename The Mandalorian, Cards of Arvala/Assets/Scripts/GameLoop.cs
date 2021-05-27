@@ -7,7 +7,7 @@ public class GameLoop : MonoBehaviour
 {
     public Player player1;
     public Player player2;
-    private Player turnPlayer;
+    [HideInInspector] public Player turnPlayer;
     private Turn turnState;
     private UIManager ui;
 
@@ -22,13 +22,11 @@ public class GameLoop : MonoBehaviour
     {
         ui = GetComponent<UIManager>();
         VuforiaUnity.SetHint(VuforiaUnity.VuforiaHint.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, Player.sizeFieldCards * 2);
-
         if (Random.Range(1, 2) == 1)
             turnPlayer = player1;
         else
             turnPlayer = player2;
-
-        turnState = Turn.DRAW;
+        ChangeDrawState();
     }
 
     // Update is called once per frame
@@ -37,6 +35,31 @@ public class GameLoop : MonoBehaviour
         TurnLogic();
     }
 
+    private void ChangeDrawState()
+    {
+        if (!turnPlayer.AllDeckDrawed())
+        {
+            turnState = Turn.DRAW;
+            ui.UiDraw();
+        }
+        else
+            ChangeAttackState();
+    }
+    public void ChangeAttackState()
+    {
+        turnState = Turn.ATTACK;
+        ui.UiAttack();
+    }
+    public void ChangePlayCardState()
+    {
+        turnState = Turn.PLAY_CARD;
+        ui.UiPlay();
+    }
+    public void ChangeEndTurnState()
+    {
+        turnState = Turn.ENDTURN;
+        ui.DisableAllUi();
+    }
     public bool DetectedNewCard(Card card)
     {
         if (turnState != Turn.DRAW)
@@ -44,8 +67,8 @@ public class GameLoop : MonoBehaviour
 
         if (turnPlayer.AddCard(card))
         {
-            turnState = Turn.PLAY_CARD;
-            card.registered = true;
+            ChangeAttackState();
+            card.RegisterCard();
             Debug.Log("Succesful draw card");
             return true;
         }
@@ -64,20 +87,23 @@ public class GameLoop : MonoBehaviour
         if (turnPlayer.PlayCard(card))
         {
             Debug.Log("Succesful played card");
-            turnState = Turn.ATTACK;
+            ChangeEndTurnState();
         }
         else
             Debug.LogWarning("Cant play this card: Card not in hand");
     }
-
-    void EndTurn()
+    void SwapTurnPlayer()
     {
-        //check win lose players
-        //player.CheckLose();
         if (turnPlayer == player1)
             turnPlayer = player2;
         else if (turnPlayer == player2)
             turnPlayer = player1;
+    }
+    void EndTurn()
+    {
+        //check win lose players
+        //player.CheckLose();
+        SwapTurnPlayer();
     }
 
     void TurnLogic()
@@ -85,21 +111,19 @@ public class GameLoop : MonoBehaviour
         switch(turnState)
         {
             case Turn.DRAW:
-                ui.UiDraw();
                 break;
 
             case Turn.PLAY_CARD:
-                ui.UiPlay();
                 break;
 
             case Turn.ATTACK:
-                ui.UiAttack();
-                turnState = Turn.ENDTURN;
+                //ui.UiAttack();
+                //turnState = Turn.ENDTURN;
                 break;
 
             case Turn.ENDTURN:
                 EndTurn();
-                turnState = Turn.DRAW;
+                ChangeDrawState();
                 Debug.Log("turn has ended");
                 break;
         }

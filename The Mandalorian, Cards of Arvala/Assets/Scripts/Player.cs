@@ -26,10 +26,21 @@ public class Player : MonoBehaviour
     {
         
     }
-
+    public bool AllDeckDrawed()
+    {
+        return numRegisteredCards >= deckSize;
+    }
+    public bool FullHand()
+    {
+        return handnumCards >= deckSize;
+    }
+    public bool EmptyHand()
+    {
+        return handnumCards <= 0;
+    }
     public bool AddCard(Card card)
     {
-        if (handnumCards >= deckSize && numRegisteredCards >= deckSize)
+        if (FullHand() || AllDeckDrawed())
             return true;
 
         for (int i = 0; i < numRegisteredCards; ++i)
@@ -42,9 +53,17 @@ public class Player : MonoBehaviour
         return true;
     }
 
+    public bool EmptyField()
+    {
+        return fieldnumCards <= 0;
+    }
+    public bool FullField()
+    {
+        return fieldnumCards >= sizeFieldCards;
+    }
     public bool PlayCard(Card card)
     {
-        if(fieldnumCards >= sizeFieldCards)
+        if(FullField())
             return true;
 
         for (int i = 0; i < handnumCards; ++i)

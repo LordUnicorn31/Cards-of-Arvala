@@ -5,12 +5,19 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public int maxHealth;
-    private int health;
+    [HideInInspector] public int health;
     public int damage;
-    [HideInInspector]public int player = 0;
+    [HideInInspector] public int player = 0;
     public GameLoop game;
-    [HideInInspector]public bool registered = false;
+    private bool registered = false;
+    public GameObject cardPrefab;
+    [HideInInspector] public bool selected = false;
 
+    void Awake()
+    {
+        health = maxHealth;
+        cardPrefab.SetActive(false);
+    }
     public void DetectedCard()
     {
         if (!registered)
@@ -22,5 +29,13 @@ public class Card : MonoBehaviour
     public void OutlineCard(bool outline)
     {
         GetComponent<Outline>().enabled = outline;
+    }
+    public void RegisterCard()
+    {
+        if(!registered)
+        {
+            registered = true;
+            cardPrefab.SetActive(true);
+        }
     }
 }
