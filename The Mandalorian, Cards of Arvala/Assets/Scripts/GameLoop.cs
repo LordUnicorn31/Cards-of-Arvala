@@ -9,7 +9,7 @@ public class GameLoop : MonoBehaviour
     public Player player2;
     private Player turnPlayer;
     private Turn turnState;
-    public UI ui;
+    private UIManager ui;
 
     private enum Turn
     {
@@ -20,14 +20,15 @@ public class GameLoop : MonoBehaviour
     }
     void Start()
     {
+        ui = GetComponent<UIManager>();
+        VuforiaUnity.SetHint(VuforiaUnity.VuforiaHint.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, Player.sizeFieldCards * 2);
+
         if (Random.Range(1, 2) == 1)
             turnPlayer = player1;
         else
             turnPlayer = player2;
 
         turnState = Turn.DRAW;
-
-        VuforiaUnity.SetHint(VuforiaUnity.VuforiaHint.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, Player.sizeFieldCards *2);
     }
 
     // Update is called once per frame
@@ -101,9 +102,6 @@ public class GameLoop : MonoBehaviour
                 turnState = Turn.DRAW;
                 Debug.Log("turn has ended");
                 break;
-
         }
     }
-
-
 }

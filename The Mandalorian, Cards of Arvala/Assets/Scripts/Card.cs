@@ -18,4 +18,9 @@ public class Card : MonoBehaviour
         else
             game.DetectedRegisteredCard(this);
     }
+
+    public void OutlineCard(bool outline)
+    {
+        GetComponent<Outline>().enabled = outline;
+    }
 }
