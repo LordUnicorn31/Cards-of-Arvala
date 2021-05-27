@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Text : MonoBehaviour
+public class TextPlayers : MonoBehaviour
 {
     public GameObject obj;
     private TextMesh text;

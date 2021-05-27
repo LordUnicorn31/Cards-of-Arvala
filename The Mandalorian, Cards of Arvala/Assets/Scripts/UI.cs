@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
 
-    [HideInInspector] public TextMesh text;
+    [HideInInspector] public Text text1;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<TextMesh>();
+        text1 = GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -20,17 +21,20 @@ public class UI : MonoBehaviour
 
     public void UiDraw()
     {
-        text.text = $"Draw a card";
+        text1.color = Color.blue;
+        text1.text = $"Draw a card";
     }
 
     public void UiPlay()
     {
-        text.text = $"Play a card";
+        text1.color = Color.magenta;
+        text1.text = $"Play a card";
     }
 
     public void UiAttack()
     {
-        text.text = $"Attack a card";
+        text1.color = Color.yellow;
+        text1.text = $"Attack a card";
     }
 
     //void UiDraw2()
