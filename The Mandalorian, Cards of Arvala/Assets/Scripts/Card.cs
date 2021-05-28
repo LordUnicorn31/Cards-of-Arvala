@@ -12,12 +12,17 @@ public class Card : MonoBehaviour
     private bool registered = false;
     public GameObject cardPrefab;
     private bool showModel = false;
+    public UiCardStats cardUi;
 
     void Awake()
     {
         health = maxHealth;
+        cardUi.enabled = false;
+        gameObject.GetComponentInChildren<Outline>().enabled = true;
+        gameObject.GetComponentInChildren<Outline>().enabled = false;
         cardPrefab.SetActive(false);
     }
+
     public void DetectedCard()
     {
         if (!registered)
@@ -44,6 +49,10 @@ public class Card : MonoBehaviour
         {
             showModel = show;
             cardPrefab.SetActive(showModel);
+            if (showModel)
+                cardUi.enabled = true;
+            else
+                cardUi.enabled = false;
         }
     }
 }
