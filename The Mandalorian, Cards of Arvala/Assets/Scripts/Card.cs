@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
 
     public void OutlineCard(bool outline)
     {
-        //GetComponent<Outline>().enabled = outline;
+        gameObject.GetComponentInChildren<Outline>().enabled = outline;
     }
     public void RegisterCard()
     {
