@@ -11,7 +11,6 @@ public class Card : MonoBehaviour
     public GameLoop game;
     private bool registered = false;
     public GameObject cardPrefab;
-    [HideInInspector] public bool selected = false;
 
     void Awake()
     {

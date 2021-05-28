@@ -54,10 +54,4 @@ public class UIManager : MonoBehaviour
     {
         activeCanvas.SetActive(false);
     }
-
-    //void UiDraw2()
-    //{
-    //    text.text = $"Player 2 draws a card";
-    //}
-
 }

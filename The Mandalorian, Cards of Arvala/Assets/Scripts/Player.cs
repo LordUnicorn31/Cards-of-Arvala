@@ -79,4 +79,16 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+
+    public bool CardOnField(Card card)
+    {
+        for (int i = 0; i < fieldnumCards; ++i)
+        {
+            if (fieldCards[i] == card)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
