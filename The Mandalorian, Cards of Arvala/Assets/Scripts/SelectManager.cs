@@ -36,6 +36,28 @@ public class SelectManager : MonoBehaviour
                 }
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Card hitCard = hit.transform.gameObject.GetComponent<Card>();
+                if (hitCard)
+                {
+                    if (game.turnPlayer.CardOnField(hitCard))
+                    {
+                        selectedAlly = hitCard;
+                        selectedAlly.OutlineCard(true);
+                    }
+                    else if (game.opponent.CardOnField(hitCard))
+                    {
+                        selectedOpponent = hitCard;
+                        selectedOpponent.OutlineCard(true);
+                    }
+                }
+            }
+        }
     }
     public void ResetSelections()
     {
@@ -47,7 +69,7 @@ public class SelectManager : MonoBehaviour
 
         if (selectedOpponent)
         {
-            selectedAlly.OutlineCard(false);
+            selectedOpponent.OutlineCard(false);
             selectedOpponent = null;
         }
     }

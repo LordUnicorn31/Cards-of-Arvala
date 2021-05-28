@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
 
     public void OutlineCard(bool outline)
     {
-        GetComponent<Outline>().enabled = outline;
+        //GetComponent<Outline>().enabled = outline;
     }
     public void RegisterCard()
     {
