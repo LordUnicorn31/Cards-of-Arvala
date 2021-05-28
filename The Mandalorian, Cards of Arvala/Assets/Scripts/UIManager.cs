@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject playCardCanvas;
     public GameObject attackCanvas;
     public GameObject actionSelectionCanvas;
+    public GameObject endGameCanvas;
     private GameObject activeCanvas;
     
     // Start is called before the first frame update
@@ -17,11 +18,13 @@ public class UIManager : MonoBehaviour
         drawCanvas.SetActive(false);
         playCardCanvas.SetActive(false);
         attackCanvas.SetActive(false);
+        endGameCanvas.SetActive(false);
         actionSelectionCanvas.SetActive(false);
         drawCanvas.GetComponent<Canvas>().enabled = true;
         playCardCanvas.GetComponent<Canvas>().enabled = true;
         attackCanvas.GetComponent<Canvas>().enabled = true;
         actionSelectionCanvas.GetComponent<Canvas>().enabled = true;
+        endGameCanvas.GetComponent<Canvas>().enabled = true;
         //first canvas is draw one
         activeCanvas = drawCanvas;
     }
@@ -54,7 +57,13 @@ public class UIManager : MonoBehaviour
         activeCanvas.GetComponent<ActionSelectionCanvas>().StartActionSelection();
         activeCanvas.SetActive(true);
     }
-
+    public void UiEndGame(Player winner)
+    {
+        activeCanvas.SetActive(false);
+        activeCanvas = endGameCanvas;
+        activeCanvas.SetActive(true);
+        activeCanvas.GetComponent<EndGameCanvas>().SetWinnerText(winner);
+    }
     public void DisableAllUi()
     {
         activeCanvas.SetActive(false);

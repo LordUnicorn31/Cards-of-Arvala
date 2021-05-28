@@ -153,6 +153,7 @@ public class GameLoop : MonoBehaviour
                     {
                         opponent.RemoveFieldCard(selectManager.selectedOpponent);
                         Destroy(selectManager.selectedOpponent.gameObject);
+                        selectManager.selectedOpponent = null;
                     }
                     selectManager.ResetSelections();
                     turnState = Turn.END_TURN;
@@ -164,7 +165,7 @@ public class GameLoop : MonoBehaviour
                 {
                     turnState = Turn.END_GAME;
                     selectManager.ResetSelections();
-                    //ui.ChangeEndGameUi(winner);
+                    ui.UiEndGame(turnPlayer);
                 }
                 else
                 {
