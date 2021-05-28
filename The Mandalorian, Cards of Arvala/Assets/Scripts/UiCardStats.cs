@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class UiCardStats : MonoBehaviour
 {
-    //public TextMesh attack;
-    private TextMesh health;
+    public TextMesh health;
+    public TextMesh attack;
     public Card card;
-    
-    void Awake()
-    {
-        health = GetComponent<TextMesh>();    
-    }
+
     // Update is called once per frame
     void Update()
     {
         health.text = $"Life: {card.health.ToString()}";
+        attack.text = $"Attack: {card.damage.ToString()}";
     }
 }

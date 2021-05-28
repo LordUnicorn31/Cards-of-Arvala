@@ -163,7 +163,7 @@ public class GameLoop : MonoBehaviour
                 if (EndGame())
                 {
                     turnState = Turn.END_GAME;
-                    EndTurn();
+                    selectManager.ResetSelections();
                     //ui.ChangeEndGameUi(winner);
                 }
                 else
