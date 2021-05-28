@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
     public GameObject attackCanvas;
     public GameObject actionSelectionCanvas;
     private GameObject activeCanvas;
-    public ActionSelectionCanvas actionSelectionScript;
     
     // Start is called before the first frame update
     void Awake()
@@ -31,7 +30,6 @@ public class UIManager : MonoBehaviour
     {
         activeCanvas.SetActive(false);
         activeCanvas = drawCanvas;
-        actionSelectionScript.enabled = false;
         activeCanvas.SetActive(true);
     }
 
@@ -39,7 +37,6 @@ public class UIManager : MonoBehaviour
     {
         activeCanvas.SetActive(false);
         activeCanvas = playCardCanvas;
-        actionSelectionScript.enabled = false;
         activeCanvas.SetActive(true);
     }
 
@@ -47,7 +44,6 @@ public class UIManager : MonoBehaviour
     {
         activeCanvas.SetActive(false);
         activeCanvas = attackCanvas;
-        actionSelectionScript.enabled = false;
         activeCanvas.SetActive(true);
     }
 
@@ -55,13 +51,12 @@ public class UIManager : MonoBehaviour
     {
         activeCanvas.SetActive(false);
         activeCanvas = actionSelectionCanvas;
-        actionSelectionScript.enabled = true;
+        activeCanvas.GetComponent<ActionSelectionCanvas>().StartActionSelection();
         activeCanvas.SetActive(true);
     }
 
     public void DisableAllUi()
     {
         activeCanvas.SetActive(false);
-        actionSelectionScript.enabled = false;
     }
 }
