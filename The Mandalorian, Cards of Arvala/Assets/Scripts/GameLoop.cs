@@ -27,6 +27,8 @@ public class GameLoop : MonoBehaviour
         ui = GetComponent<UIManager>();
         selectManager = GetComponent<SelectManager>();
         VuforiaUnity.SetHint(VuforiaUnity.VuforiaHint.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, Player.sizeFieldCards * 2);
+        player1.playerName = "Player 1";
+        player2.playerName = "Player 2";
         if (Random.Range(1, 2) == 1)
         {
             turnPlayer = player1;
@@ -151,9 +153,12 @@ public class GameLoop : MonoBehaviour
                     selectManager.selectedOpponent.health -= selectManager.selectedAlly.damage;
                     if (selectManager.selectedOpponent.health <= 0)
                     {
+                        selectManager.selectedOpponent.health = 0;
                         opponent.RemoveFieldCard(selectManager.selectedOpponent);
-                        Destroy(selectManager.selectedOpponent.gameObject);
+                        selectManager.selectedOpponent.dead = true;
                         selectManager.selectedOpponent = null;
+                        //Destroy(selectManager.selectedOpponent.gameObject);
+                        //selectManager.selectedOpponent = null;
                     }
                     selectManager.ResetSelections();
                     turnState = Turn.END_TURN;
@@ -164,7 +169,6 @@ public class GameLoop : MonoBehaviour
                 if (EndGame())
                 {
                     turnState = Turn.END_GAME;
-                    selectManager.ResetSelections();
                     ui.UiEndGame(turnPlayer);
                 }
                 else

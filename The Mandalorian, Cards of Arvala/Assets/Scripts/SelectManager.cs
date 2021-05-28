@@ -24,11 +24,15 @@ public class SelectManager : MonoBehaviour
                     {
                         if(game.turnPlayer.CardOnField(hitCard))
                         {
+                            if(selectedAlly)
+                                selectedAlly.OutlineCard(false);
                             selectedAlly = hitCard;
                             selectedAlly.OutlineCard(true);
                         }
                         else if(game.opponent.CardOnField(hitCard))
                         {
+                            if(selectedOpponent)
+                                selectedOpponent.OutlineCard(false);
                             selectedOpponent = hitCard;
                             selectedOpponent.OutlineCard(true);
                         }

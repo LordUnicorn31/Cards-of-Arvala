@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public const int sizeFieldCards = 3;
     [HideInInspector] public Card[] handCards;
     [HideInInspector] public int handnumCards = 0;
+    [HideInInspector] public string playerName = "";
     // Start is called before the first frame update
     void Start()
     {

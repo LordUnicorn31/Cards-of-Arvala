@@ -9,6 +9,6 @@ public class EndGameCanvas : MonoBehaviour
     // Start is called before the first frame update
     public void SetWinnerText(Player winner)
     {
-        winnerText.text = $"Player {winner.ToString()}";
+        winnerText.text = winner.playerName;
     }
 }

@@ -12,6 +12,7 @@ public class Card : MonoBehaviour
     private bool registered = false;
     public GameObject cardPrefab;
     private bool showModel = false;
+    [HideInInspector] public bool dead = false;
     public UiCardStats cardUi;
 
     void Awake()
@@ -25,6 +26,9 @@ public class Card : MonoBehaviour
 
     public void DetectedCard()
     {
+        if (dead)
+            return;
+
         if (!registered)
             game.DetectedNewCard(this);
         else
