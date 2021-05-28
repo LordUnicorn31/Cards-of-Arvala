@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelectManager : MonoBehaviour
 {
     [HideInInspector] public Card selectedAlly = null;
-    [HideInInspector] public Card opponentSelectedCard = null;
+    [HideInInspector] public Card selectedOpponent = null;
     public GameLoop game;
     // Start is called before the first frame update
     public void CheckSelection()
@@ -29,8 +29,8 @@ public class SelectManager : MonoBehaviour
                         }
                         else if(game.opponent.CardOnField(hitCard))
                         {
-                            opponentSelectedCard = hitCard;
-                            opponentSelectedCard.OutlineCard(true);
+                            selectedOpponent = hitCard;
+                            selectedOpponent.OutlineCard(true);
                         }
                     }
                 }
@@ -45,10 +45,10 @@ public class SelectManager : MonoBehaviour
             selectedAlly = null;
         }
 
-        if (opponentSelectedCard)
+        if (selectedOpponent)
         {
             selectedAlly.OutlineCard(false);
-            opponentSelectedCard = null;
+            selectedOpponent = null;
         }
     }
 }

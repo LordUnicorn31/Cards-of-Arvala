@@ -91,4 +91,16 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+
+    public void RemoveFieldCard(Card card)
+    {
+        for (int i = 0; i < fieldnumCards; ++i)
+        {
+            if (fieldCards[i] == card)
+            {
+                fieldCards[i] = fieldCards[fieldnumCards - 1];
+                --fieldnumCards;
+            }
+        }
+    }
 }

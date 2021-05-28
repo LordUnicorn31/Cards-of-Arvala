@@ -19,7 +19,8 @@ public class GameLoop : MonoBehaviour
         ACTION_SELECTION,
         PLAY_CARD,
         ATTACK,
-        ENDTURN,
+        END_TURN,
+        END_GAME
     }
     void Start()
     {
@@ -53,7 +54,12 @@ public class GameLoop : MonoBehaviour
             ui.UiDraw();
         }
         else
-            ChangeAttackState();
+            ChangeActionSelectionState();
+    }
+    public void ChangeActionSelectionState()
+    {
+        turnState = Turn.ACTION_SELECTION;
+        ui.UiActionSelection();
     }
     public void ChangeAttackState()
     {
@@ -67,7 +73,7 @@ public class GameLoop : MonoBehaviour
     }
     public void ChangeEndTurnState()
     {
-        turnState = Turn.ENDTURN;
+        turnState = Turn.END_TURN;
         ui.DisableAllUi();
     }
     public bool DetectedNewCard(Card card)
@@ -77,7 +83,7 @@ public class GameLoop : MonoBehaviour
 
         if (turnPlayer.AddCard(card))
         {
-            ChangeAttackState();
+            ChangeActionSelectionState();
             card.RegisterCard();
             Debug.Log("Succesful draw card");
             return true;
@@ -116,6 +122,15 @@ public class GameLoop : MonoBehaviour
         SwapTurnPlayer();
     }
 
+    private bool EndGame()
+    {
+        if(opponent.EmptyHand() && opponent.EmptyField() && opponent.AllDeckDrawed())
+        {
+            return true;
+        }
+        return false;
+    }
+
     void TurnLogic()
     {
         switch(turnState)
@@ -124,22 +139,41 @@ public class GameLoop : MonoBehaviour
                 break;
 
             case Turn.ACTION_SELECTION:
-                selectManager.CheckSelection();
-
                 break;
 
             case Turn.PLAY_CARD:
                 break;
 
             case Turn.ATTACK:
-                //ui.UiAttack();
-                //turnState = Turn.ENDTURN;
+                selectManager.CheckSelection();
+                if(selectManager.selectedAlly != null && selectManager.selectedOpponent != null)
+                {
+                    selectManager.selectedOpponent.health -= selectManager.selectedAlly.damage;
+                    if (selectManager.selectedOpponent.health <= 0)
+                    {
+                        opponent.RemoveFieldCard(selectManager.selectedOpponent);
+                        Destroy(selectManager.selectedOpponent.gameObject);
+                    }
+                    selectManager.ResetSelections();
+                    turnState = Turn.END_TURN;
+                }
                 break;
 
-            case Turn.ENDTURN:
-                EndTurn();
-                ChangeDrawState();
+            case Turn.END_TURN:
+                if (EndGame())
+                {
+                    turnState = Turn.END_GAME;
+                    EndTurn();
+                    //ui.ChangeEndGameUi(winner);
+                }
+                else
+                    EndTurn();
+                    ChangeDrawState();
+                
                 Debug.Log("turn has ended");
+                break;
+            case Turn.END_GAME:
+                
                 break;
         }
     }

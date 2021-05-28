@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AttackCanvas : MonoBehaviour
+public class ActionSelectionCanvas : MonoBehaviour
 {
     public GameLoop game;
     public Button playCardButton;
-    public Button attackButton;
+    public Button combatButton;
     // Start is called before the first frame update
     void Start()
     {
         //Reset the ui when enabling the canvas
         playCardButton.interactable = true;
-        attackButton.interactable = true;
+        combatButton.interactable = true;
         if (game.turnPlayer.FullField() || game.turnPlayer.EmptyHand())
             playCardButton.interactable = false;
         if (game.turnPlayer.EmptyField())
-            attackButton.interactable = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            combatButton.interactable = false;
     }
 }
