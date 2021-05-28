@@ -28,7 +28,14 @@ public class Card : MonoBehaviour
         if (!registered)
             game.DetectedNewCard(this);
         else
+        {
+            if (showModel)
+            {
+                cardUi.gameObject.SetActive(true);
+                cardUi.enabled = true;
+            }
             game.DetectedRegisteredCard(this);
+        }
     }
 
     public void OutlineCard(bool outline)
@@ -50,9 +57,15 @@ public class Card : MonoBehaviour
             showModel = show;
             cardPrefab.SetActive(showModel);
             if (showModel)
+            {
+                cardUi.gameObject.SetActive(true);
                 cardUi.enabled = true;
+            }
             else
+            {
+                cardUi.gameObject.SetActive(false);
                 cardUi.enabled = false;
+            }
         }
     }
 }

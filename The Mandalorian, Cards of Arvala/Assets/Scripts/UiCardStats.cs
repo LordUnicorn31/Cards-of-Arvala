@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UiCardStats : MonoBehaviour
 {
     //public TextMesh attack;
     private TextMesh health;
     public Card card;
-
-    void Start()
+    
+    void Awake()
     {
-        health = GetComponent<TextMesh>();
+        health = GetComponent<TextMesh>();    
     }
     // Update is called once per frame
     void Update()
