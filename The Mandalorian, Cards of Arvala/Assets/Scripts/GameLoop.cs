@@ -167,8 +167,10 @@ public class GameLoop : MonoBehaviour
                     //ui.ChangeEndGameUi(winner);
                 }
                 else
+                {
                     EndTurn();
                     ChangeDrawState();
+                }
                 
                 Debug.Log("turn has ended");
                 break;

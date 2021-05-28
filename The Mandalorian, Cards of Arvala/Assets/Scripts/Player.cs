@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
         {
             if (handCards[i] == card)
             {
+                card.ShowModel(true);
                  handCards[i] = handCards[handnumCards-1];
                 --handnumCards;
 
@@ -98,6 +99,7 @@ public class Player : MonoBehaviour
         {
             if (fieldCards[i] == card)
             {
+                card.ShowModel(false);
                 fieldCards[i] = fieldCards[fieldnumCards - 1];
                 --fieldnumCards;
             }

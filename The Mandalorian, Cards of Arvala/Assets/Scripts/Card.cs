@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     public GameLoop game;
     private bool registered = false;
     public GameObject cardPrefab;
+    private bool showModel = false;
 
     void Awake()
     {
@@ -34,7 +35,15 @@ public class Card : MonoBehaviour
         if(!registered)
         {
             registered = true;
-            cardPrefab.SetActive(true);
+        }
+    }
+
+    public void ShowModel(bool show)
+    {
+        if (show != showModel)
+        {
+            showModel = show;
+            cardPrefab.SetActive(showModel);
         }
     }
 }

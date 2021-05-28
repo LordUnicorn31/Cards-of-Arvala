@@ -382,7 +382,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Attack a card
+  m_Text: Select Action
 --- !u!222 &245824597
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -830,7 +830,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1891717823}
         m_TargetAssemblyTypeName: GameLoop, Assembly-CSharp
-        m_MethodName: ChangeAttackState
+        m_MethodName: ChangeActionSelectionState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2986,7 +2986,6 @@ MonoBehaviour:
   playCardCanvas: {fileID: 878134363}
   attackCanvas: {fileID: 1577663297}
   actionSelectionCanvas: {fileID: 748264585}
-  actionSelectionScript: {fileID: 748264590}
 --- !u!114 &1891717826
 MonoBehaviour:
   m_ObjectHideFlags: 0
