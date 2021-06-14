@@ -72,4 +72,13 @@ public class Card : MonoBehaviour
             }
         }
     }
+
+    public void ChangeOutlineColor(Color color)
+    {
+        Outline outline = gameObject.GetComponentInChildren<Outline>();
+        if(outline && outline.enabled)
+        {
+            outline.OutlineColor = color;
+        }
+    }
 }

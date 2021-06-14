@@ -13,9 +13,11 @@
 	on draw stage dont show the mesh of the card
 	draw / play states button to change state (just active when found card to draw or play)
 
-5- billboard epic fail
+ DONE 5- billboard epic fail
 
 //-------------------------------PROTOTYPE-------------------------------------------------
 6- Add some more cards (redo grogu fisical card)
 
 7- logic for repeated cards
+
+8- outline del color segons si selecciones aliat o enemic
