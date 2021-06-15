@@ -8,6 +8,7 @@ public class UiCardStats : MonoBehaviour
     public TextMesh attack;
     public Slider slider;
     public Card card;
+    private Color colorToSet = Color.black;
 
     void Awake()
     {
@@ -20,5 +21,15 @@ public class UiCardStats : MonoBehaviour
     {
         attack.text = $"Attack: {card.damage.ToString()}";
         slider.value = card.health;
+        if (slider && attack)
+        {
+            //slider.image.color = colorToSet;
+            attack.color = colorToSet;
+        }
+    }
+
+    public void SetColor(Color color)
+    {
+        colorToSet = color;
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SelectManager : MonoBehaviour
 {
-    public Color opponentOutline;
-    public Color playerOutline;
     [HideInInspector] public Card selectedAlly = null;
     [HideInInspector] public Card selectedOpponent = null;
     public GameLoop game;
@@ -30,7 +28,7 @@ public class SelectManager : MonoBehaviour
                                 selectedAlly.OutlineCard(false);
                             selectedAlly = hitCard;
                             selectedAlly.OutlineCard(true);
-                            selectedAlly.ChangeOutlineColor(playerOutline);
+                            selectedAlly.ChangeOutlineColor(game.ui.playerColor);
                         }
                         else if(game.opponent.CardOnField(hitCard))
                         {
@@ -38,7 +36,7 @@ public class SelectManager : MonoBehaviour
                                 selectedOpponent.OutlineCard(false);
                             selectedOpponent = hitCard;
                             selectedOpponent.OutlineCard(true);
-                            selectedOpponent.ChangeOutlineColor(opponentOutline);
+                            selectedOpponent.ChangeOutlineColor(game.ui.opponentColor);
                         }
                     }
                 }
@@ -57,13 +55,13 @@ public class SelectManager : MonoBehaviour
                     {
                         selectedAlly = hitCard;
                         selectedAlly.OutlineCard(true);
-                        selectedAlly.ChangeOutlineColor(playerOutline);
+                        selectedAlly.ChangeOutlineColor(game.ui.playerColor);
                     }
                     else if (game.opponent.CardOnField(hitCard))
                     {
                         selectedOpponent = hitCard;
                         selectedOpponent.OutlineCard(true);
-                        selectedOpponent.ChangeOutlineColor(opponentOutline);
+                        selectedOpponent.ChangeOutlineColor(game.ui.opponentColor);
                     }
                 }
             }

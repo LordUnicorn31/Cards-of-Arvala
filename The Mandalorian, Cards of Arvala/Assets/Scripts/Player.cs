@@ -62,11 +62,12 @@ public class Player : MonoBehaviour
     {
         return fieldnumCards >= sizeFieldCards;
     }
-    public bool PlayCard(Card card)
+    public bool PlayCard(Card card, Color color)
     {
         if(FullField())
             return true;
 
+        card.cardUi.SetColor(color);
         for (int i = 0; i < handnumCards; ++i)
         {
             if (handCards[i] == card)
@@ -104,6 +105,14 @@ public class Player : MonoBehaviour
                 fieldCards[i] = fieldCards[fieldnumCards - 1];
                 --fieldnumCards;
             }
+        }
+    }
+
+    public void ChangeCardsUiColor(Color color)
+    {
+        for (int i = 0; i < fieldnumCards; ++i)
+        {
+            cards[i].cardUi.SetColor(color);
         }
     }
 }

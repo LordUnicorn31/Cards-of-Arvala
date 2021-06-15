@@ -10,7 +10,7 @@ public class GameLoop : MonoBehaviour
     [HideInInspector] public Player turnPlayer;
     [HideInInspector] public Player opponent;
     private Turn turnState;
-    private UIManager ui;
+    [HideInInspector] public UIManager ui;
     private SelectManager selectManager;
 
     private enum Turn
@@ -102,7 +102,7 @@ public class GameLoop : MonoBehaviour
         if (turnState != Turn.PLAY_CARD)
             return;
 
-        if (turnPlayer.PlayCard(card))
+        if (turnPlayer.PlayCard(card, ui.playerColor))
         {
             Debug.Log("Succesful played card");
             ChangeEndTurnState();
@@ -115,6 +115,8 @@ public class GameLoop : MonoBehaviour
         Player temp = turnPlayer;
         turnPlayer = opponent;
         opponent = temp;
+        turnPlayer.ChangeCardsUiColor(ui.playerColor);
+        opponent.ChangeCardsUiColor(ui.opponentColor);
     }
     void EndTurn()
     {

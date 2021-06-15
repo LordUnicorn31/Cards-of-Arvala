@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Color opponentColor;
+    public Color playerColor;
     public GameObject drawCanvas;
     public GameObject playCardCanvas;
     public GameObject attackCanvas;
