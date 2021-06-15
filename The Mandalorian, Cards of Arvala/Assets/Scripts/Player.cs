@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [HideInInspector] public Card[] cards;
     [HideInInspector] public int numRegisteredCards = 0;
-    private const int deckSize = 1;
+    private const int deckSize = 2;
     [HideInInspector] public Card[] fieldCards;
     [HideInInspector] public int fieldnumCards = 0;
     [HideInInspector] public const int sizeFieldCards = 3;
