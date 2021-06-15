@@ -13,7 +13,10 @@ public class Card : MonoBehaviour
     public GameObject cardPrefab;
     private bool showModel = false;
     [HideInInspector] public bool dead = false;
+    private bool superDead = false;
     public UiCardStats cardUi;
+    public Animator anim;
+    private float deathTimer = 8.0f;
 
     void Awake()
     {
@@ -24,6 +27,18 @@ public class Card : MonoBehaviour
         cardPrefab.SetActive(false);
     }
 
+    private void Update()
+    {
+        if(dead && !superDead)
+        {
+            deathTimer -= Time.deltaTime;
+            if(deathTimer < 0.0f)
+            {
+                ShowModel(false);
+                superDead = true;
+            }
+        }
+    }
     public void DetectedCard()
     {
         if (dead)
@@ -71,6 +86,11 @@ public class Card : MonoBehaviour
                 cardUi.enabled = false;
             }
         }
+    }
+
+    public void CardDeath()
+    {
+        dead = true;
     }
 
     public void ChangeOutlineColor(Color color)

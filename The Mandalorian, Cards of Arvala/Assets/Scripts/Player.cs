@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         {
             if (fieldCards[i] == card)
             {
-                card.ShowModel(false);
+                card.CardDeath();
                 fieldCards[i] = fieldCards[fieldnumCards - 1];
                 --fieldnumCards;
             }

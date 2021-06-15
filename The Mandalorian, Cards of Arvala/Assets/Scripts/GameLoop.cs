@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Vuforia;
 
 public class GameLoop : MonoBehaviour
@@ -126,6 +127,11 @@ public class GameLoop : MonoBehaviour
         SwapTurnPlayer();
     }
 
+    public void ReturnMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     private bool EndGame()
     {
         if(opponent.EmptyHand() && opponent.EmptyField() && opponent.AllDeckDrawed())
@@ -152,12 +158,13 @@ public class GameLoop : MonoBehaviour
                 selectManager.CheckSelection();
                 if(selectManager.selectedAlly != null && selectManager.selectedOpponent != null)
                 {
+                    selectManager.selectedAlly.GetComponentInChildren<Animator>().SetTrigger("attack");
                     selectManager.selectedOpponent.health -= selectManager.selectedAlly.damage;
                     if (selectManager.selectedOpponent.health <= 0)
                     {
                         selectManager.selectedOpponent.health = 0;
+                        selectManager.selectedOpponent.GetComponentInChildren<Animator>().SetBool("isDead", true);
                         opponent.RemoveFieldCard(selectManager.selectedOpponent);
-                        selectManager.selectedOpponent.dead = true;
                         selectManager.selectedOpponent = null;
                         //Destroy(selectManager.selectedOpponent.gameObject);
                         //selectManager.selectedOpponent = null;
