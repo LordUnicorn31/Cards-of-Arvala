@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Main : MonoBehaviour
 {
-    Touch touch;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +14,7 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SceneChanger();
-    }
-
-    void SceneChanger()
-    {
-        if(Input.GetKey(KeyCode.E) /*|| touch.phase == TouchPhase.Began*/)
+        if(Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene(1);
         }
